@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>补档：RoarCTF 2020 初赛 slime_war | Exp</title><meta name="author" content="flash"><meta name="copyright" content="flash"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文为之前参加过的ctf比赛的writeup，迁移到这个博客来吧 REslime_war(solved) 刷了全图竟然只有2?还是乱码 经典一道题玩一天,感觉得练一下密码学,不然只做逆向还是不太行; 自己搞了一天,在共享文档上和龙哥交流,慢慢把条件给理顺了,经典的控制台程序编程,没有套框架,代码用IDA看都非常好懂,感觉应该是我比较能做的一类题目了; 题意是玩一个游戏,收集5个隐藏条件最后出fla">
+<meta property="og:type" content="article">
+<meta property="og:title" content="补档：RoarCTF 2020 初赛 slime_war">
+<meta property="og:url" content="http://example.com/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9ARoarCTF-2020-%E5%88%9D%E8%B5%9B-slime-war/index.html">
+<meta property="og:site_name" content="Exp">
+<meta property="og:description" content="本文为之前参加过的ctf比赛的writeup，迁移到这个博客来吧 REslime_war(solved) 刷了全图竟然只有2?还是乱码 经典一道题玩一天,感觉得练一下密码学,不然只做逆向还是不太行; 自己搞了一天,在共享文档上和龙哥交流,慢慢把条件给理顺了,经典的控制台程序编程,没有套框架,代码用IDA看都非常好懂,感觉应该是我比较能做的一类题目了; 题意是玩一个游戏,收集5个隐藏条件最后出fla">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://api.ixiaowai.cn/gqapi/gqapi.php?id=805">
+<meta property="article:published_time" content="2022-08-24T13:47:48.000Z">
+<meta property="article:modified_time" content="2022-08-24T13:48:14.162Z">
+<meta property="article:author" content="flash">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api.ixiaowai.cn/gqapi/gqapi.php?id=805"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9ARoarCTF-2020-%E5%88%9D%E8%B5%9B-slime-war/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '补档：RoarCTF 2020 初赛 slime_war',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-24 21:48:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Exp</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">补档：RoarCTF 2020 初赛 slime_war</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-24T13:47:48.000Z" title="发表于 2022-08-24 21:47:48">2022-08-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-24T13:48:14.162Z" title="更新于 2022-08-24 21:48:14">2022-08-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="补档：RoarCTF 2020 初赛 slime_war"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><p>本文为之前参加过的ctf比赛的writeup，迁移到这个博客来吧</p>
+<h1 id="RE"><a href="#RE" class="headerlink" title="RE"></a>RE</h1><h2 id="slime-war-solved"><a href="#slime-war-solved" class="headerlink" title="slime_war(solved)"></a>slime_war(solved)</h2><ul>
+<li>刷了全图竟然只有2?还是乱码</li>
+<li>经典一道题玩一天,感觉得练一下密码学,不然只做逆向还是不太行;</li>
+<li>自己搞了一天,在共享文档上和龙哥交流,慢慢把条件给理顺了,经典的控制台程序编程,没有套框架,代码用IDA看都非常好懂,感觉应该是我比较能做的一类题目了;</li>
+<li>题意是玩一个游戏,收集5个隐藏条件最后出flag;</li>
+<li>首先是改攻击力,走了一圈打了全图,发现通关后并没有flag,看代码发现有一个变量被不同的地方累计了5次,直接xref然后每个变量增加的地方都下个断点,然后再玩一次,把原来打的2给定位了,发现:</li>
+<li>第一个在<strong>0x1400066B0的地方,在第七层有一个隐藏奖励获取的地方,打穿然后回到第一层,进去隐藏关卡再出来触发</strong>;</li>
+<li><strong>第二个应该就是打通boss</strong>,但是这里并不是唯一的条件,后面再说;</li>
+<li><strong>第三个是键盘输入</strong>,接下来就是看剩下的断点,其实从这里开始才在认真看程序,第一个是类似一个作弊码要输入一个东西,在龙哥的提醒下发现程序根据键盘的输入逐渐对一个状态值继续累加(龙哥提醒:状态机),所以说看一下程序可以把这个值看出来,这样输入就变成了一个字符串作为密码的一部分;</li>
+<li><strong>第四个,把攻击力计算一下然后和一个常数比较</strong>,搜了一下常数应该是md5,但是在爆破的时候犯了个很蠢的错误,hashlib.md5直接使用了update更新每一个种子,应该每次都得重新声明一个新的md5()orz,这一步卡了有点久,太蠢了;</li>
+<li><strong>第五个: 0x14000632D的那个,第三层买药水,第二层站在19列4行按t进去,不能走错,29步走到T</strong>,这一个对应的条件是走到T点,当时在第二层看到了T点但是进不去,仔细看了下变量发现其实是有提示的,另外还有一个是说当时盲目找还以为是有什么特殊的砖块,结果走了半天并没有;</li>
+<li>到这里打了boss以为过关了,结果5个secret但是boss那里打出来的还是乱码,在龙哥的指导下仔细看了打完boss的条件,一开始对里面计算时候的变量xref了一下看引用,没有发现在其他变量的地方使用,但是有一个地址的常数被用来把整个程序的text段(0x9000个bytes)拿去做了一个类似hash的操作,然后把这个hash值作为密码写到目标的地方;</li>
+<li>但是我用ida调试的话发现这个值是算不对的,很奇怪,改的几个攻击力啥的xref看了也没放在text段上,为啥用ida调的和自己提取出来算的不一样呢(算出来的值是3601301130,放进v47)-&gt;龙哥:下了软断点之后程序就会变化;</li>
+<li>但是ida里面看不出来诶感觉,看来还是太依赖工具了;</li>
+<li>总结下这道题,题目比较经典,自己太菜,基本技能还不行,没啥脚本,就放一下那个算常数的代码吧;</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> a[<span class="number">0x9000</span>]=&#123;<span class="number">0x48</span>,<span class="number">0x8D</span>,<span class="number">0x5</span>&#125;; <span class="comment">// too much</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> d[<span class="number">320</span>]=&#123;<span class="number">0x0</span>,<span class="number">0x77073096</span>&#125;; <span class="comment">// too much</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> v48=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> v49=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> v50=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        v50=v48^a[v49];</span><br><span class="line">        v49+=<span class="number">1</span>;</span><br><span class="line">        v48=(v48&gt;&gt;<span class="number">8</span>) ^ d[v50];</span><br><span class="line">    &#125;<span class="keyword">while</span> (v49!=<span class="number">0x9000</span>);</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;v48&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">flash</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9ARoarCTF-2020-%E5%88%9D%E8%B5%9B-slime-war/">http://example.com/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9ARoarCTF-2020-%E5%88%9D%E8%B5%9B-slime-war/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Exp</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://api.ixiaowai.cn/gqapi/gqapi.php?id=805" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9AHitcon20-Hxp20-%E4%B8%A4%E9%81%93%E7%AE%80%E5%8D%95%E9%A2%98%E7%9A%84writeup/"><img class="prev-cover" src="https://api.ixiaowai.cn/gqapi/gqapi.php?id=62" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">补档：Hitcon20 &amp; Hxp20 &amp; 上海大学生20 三道简单题的writeup</div></div></a></div><div class="next-post pull-right"><a href="/2022/08/24/TMCTF-Final-2020-Challenge-4-writeup/"><img class="next-cover" src="https://api.ixiaowai.cn/gqapi/gqapi.php?id=178" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">TMCTF Final 2020 Challenge 4 writeup</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">flash</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RE"><span class="toc-number">1.</span> <span class="toc-text">RE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#slime-war-solved"><span class="toc-number">1.1.</span> <span class="toc-text">slime_war(solved)</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9AAsis20-%E4%B8%A4%E9%81%93%E7%AE%80%E7%AD%94%E9%A2%98writeup/" title="补档：Asis20 两道简答题writeup"><img src="https://api.ixiaowai.cn/gqapi/gqapi.php?id=117" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="补档：Asis20 两道简答题writeup"/></a><div class="content"><a class="title" href="/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9AAsis20-%E4%B8%A4%E9%81%93%E7%AE%80%E7%AD%94%E9%A2%98writeup/" title="补档：Asis20 两道简答题writeup">补档：Asis20 两道简答题writeup</a><time datetime="2022-08-24T13:53:43.000Z" title="发表于 2022-08-24 21:53:43">2022-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9AHitcon20-Hxp20-%E4%B8%A4%E9%81%93%E7%AE%80%E5%8D%95%E9%A2%98%E7%9A%84writeup/" title="补档：Hitcon20 &amp; Hxp20 &amp; 上海大学生20 三道简单题的writeup"><img src="https://api.ixiaowai.cn/gqapi/gqapi.php?id=62" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="补档：Hitcon20 &amp; Hxp20 &amp; 上海大学生20 三道简单题的writeup"/></a><div class="content"><a class="title" href="/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9AHitcon20-Hxp20-%E4%B8%A4%E9%81%93%E7%AE%80%E5%8D%95%E9%A2%98%E7%9A%84writeup/" title="补档：Hitcon20 &amp; Hxp20 &amp; 上海大学生20 三道简单题的writeup">补档：Hitcon20 &amp; Hxp20 &amp; 上海大学生20 三道简单题的writeup</a><time datetime="2022-08-24T13:50:30.000Z" title="发表于 2022-08-24 21:50:30">2022-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9ARoarCTF-2020-%E5%88%9D%E8%B5%9B-slime-war/" title="补档：RoarCTF 2020 初赛 slime_war"><img src="https://api.ixiaowai.cn/gqapi/gqapi.php?id=805" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="补档：RoarCTF 2020 初赛 slime_war"/></a><div class="content"><a class="title" href="/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9ARoarCTF-2020-%E5%88%9D%E8%B5%9B-slime-war/" title="补档：RoarCTF 2020 初赛 slime_war">补档：RoarCTF 2020 初赛 slime_war</a><time datetime="2022-08-24T13:47:48.000Z" title="发表于 2022-08-24 21:47:48">2022-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/24/TMCTF-Final-2020-Challenge-4-writeup/" title="TMCTF Final 2020 Challenge 4 writeup"><img src="https://api.ixiaowai.cn/gqapi/gqapi.php?id=178" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TMCTF Final 2020 Challenge 4 writeup"/></a><div class="content"><a class="title" href="/2022/08/24/TMCTF-Final-2020-Challenge-4-writeup/" title="TMCTF Final 2020 Challenge 4 writeup">TMCTF Final 2020 Challenge 4 writeup</a><time datetime="2022-08-24T13:43:19.000Z" title="发表于 2022-08-24 21:43:19">2022-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9A2020%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91%E5%88%9D%E8%B5%9B/" title="补档：2020西湖论剑初赛"><img src="https://api.ixiaowai.cn/gqapi/gqapi.php?id=121" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="补档：2020西湖论剑初赛"/></a><div class="content"><a class="title" href="/2022/08/24/%E8%A1%A5%E6%A1%A3%EF%BC%9A2020%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91%E5%88%9D%E8%B5%9B/" title="补档：2020西湖论剑初赛">补档：2020西湖论剑初赛</a><time datetime="2022-08-24T13:41:15.000Z" title="发表于 2022-08-24 21:41:15">2022-08-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By flash</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
